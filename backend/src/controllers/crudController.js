@@ -78,6 +78,26 @@ exports.listTask = async (req,res)=>{
     }
 }
 
+// task By Id
+
+exports.taskById = async (req,res)=>{
+    try {
+        let id = req.params.id
+        let query = {
+            _id : id
+        }
+        let result = await crudModel.findOne(query)
+        res.status(200).json({
+            status : "success",
+            data : result
+        })
+    }catch (e){
+        res.status(500).json({
+            status : "fail",
+            data : e.toString()
+        })
+    }
+}
 
 
 
